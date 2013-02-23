@@ -41,7 +41,9 @@
 #include "config.h"
 #include <unistd.h>
 #include <errno.h>
-#include <error.h>
+#if !defined(__APPLE__)
+ #include <error.h>
+#endif /* __APPLE__ */
 #include "safe-read.h"
 
 int buggy_lseek_support(int fdesc)

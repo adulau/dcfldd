@@ -1,0 +1,65 @@
+Fixing implicit declaration warnings.
+
+--- a/hash.h
++++ b/hash.h
+@@ -99,6 +99,8 @@
+ extern void hash_update_buf(hashlist_t *, int, int, void *, size_t);
+ extern void hash_remainder(hashlist_t *, int);
+ 
++extern void init_hashlist(hashlist_t **hashlist, hashflag_t flags);
++
+ /* inner hashl_* funcitons are for iterating over hashlists */
+ extern void hashl_init(hashlist_t *, int);
+ extern void hashl_update(hashlist_t *, int, const void *, size_t);
+--- a/split.c
++++ b/split.c
+@@ -20,6 +20,9 @@
+ 
+ /* GNU dd originally written by Paul Rubin, David MacKenzie, and Stuart Kemp. */
+ 
++#define _GNU_SOURCE 1
++#include <stdio.h>
++
+ #include "dcfldd.h"
+ #include "split.h"
+ #include <stdlib.h>
+--- a/translate.c
++++ b/translate.c
+@@ -23,6 +23,7 @@
+ 
+ #include "dcfldd.h"
+ #include "log.h"
++#include "util.h"
+ 
+ /* Output representation of newline and space characters.
+    They change if we're converting to EBCDIC.  */
+--- a/util.c
++++ b/util.c
+@@ -32,6 +32,7 @@
+ 
+ #include "dcfldd.h"
+ #include <sys/types.h>
++#include <sys/wait.h>
+ #include <fcntl.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -40,6 +41,8 @@
+ #include "config.h"
+ #include <unistd.h>
+ #include <errno.h>
++#include <error.h>
++#include "safe-read.h"
+ 
+ int buggy_lseek_support(int fdesc)
+ {
+--- a/util.h
++++ b/util.h
+@@ -41,7 +41,7 @@
+ extern int bit_count(register unsigned int);
+ extern void replace_escapes(char *);
+ extern FILE *popen2(const char *, const char *);
+-extern pclose2(FILE *);
++extern int pclose2(FILE *);
+ 
+ #if (!HAVE_DECL_STRNDUP)
+ extern char *strndup(const char *, size_t);

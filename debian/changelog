@@ -1,0 +1,32 @@
+dcfldd (1.3.4.1-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Replaced homepage pseudo header with regular field. Closes: #615447
+  * Updated standards version to 3.9.3
+  * Fixed lintian warnings
+  * Updated outdated autotools helper files. Closes: #533686
+
+ -- Miah Gregory <mace@debian.org>  Sat, 12 May 2012 23:07:38 +0100
+
+dcfldd (1.3.4.1-2) unstable; urgency=low
+
+  * closes: #453577
+  * updated debian/watch to use built in uscan sf.net handling
+
+ -- Kenny Duffus <kenny@duffus.org>  Fri, 30 Nov 2007 11:32:37 +0000
+
+dcfldd (1.3.4.1-1) unstable; urgency=low
+
+  * closes: #357738
+  * updated standards version to 3.7.2
+  * new upstream (renamed from 1.3.4-1 for compatability) which Fixed an issue
+    with error-producing blocks not being zero padding under BSD systems
+
+ -- Kenny Duffus <kenny@duffus.org>  Sat, 22 Sep 2007 09:57:01 +0100
+
+dcfldd (1.3.4-0ubuntu1) dapper; urgency=low
+
+  * Initial release
+
+ -- Kenny Duffus <kenny@duffus.org>  Sun,  12 Feb 2006 18:46:07 +0000
+

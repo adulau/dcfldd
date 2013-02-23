@@ -181,7 +181,7 @@ Copy a file, converting and formatting according to the options.\n\
                              in a comma separated list\n\
   hashlog=FILE             send MD5 hash output to FILE instead of stderr\n\
                              if you are using multiple hash algorithms you\n\
-                             can send each to a seperate file using the\n\
+                             can send each to a separate file using the\n\
                              convention ALGORITHMlog=FILE, for example\n\
                              md5log=FILE1, sha1log=FILE2, etc.\n\
   hashlog:=COMMAND         exec and write hashlog to process COMMAND\n\

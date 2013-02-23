@@ -23,6 +23,7 @@
 
 #include "dcfldd.h"
 #include "log.h"
+#include "util.h"
 
 /* Output representation of newline and space characters.
    They change if we're converting to EBCDIC.  */

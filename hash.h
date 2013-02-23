@@ -99,6 +99,8 @@ extern void hash_update(hashlist_t *, void *, size_t);
 extern void hash_update_buf(hashlist_t *, int, int, void *, size_t);
 extern void hash_remainder(hashlist_t *, int);
 
+extern void init_hashlist(hashlist_t **hashlist, hashflag_t flags);
+
 /* inner hashl_* funcitons are for iterating over hashlists */
 extern void hashl_init(hashlist_t *, int);
 extern void hashl_update(hashlist_t *, int, const void *, size_t);

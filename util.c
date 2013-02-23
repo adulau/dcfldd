@@ -32,6 +32,7 @@
 
 #include "dcfldd.h"
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,6 +41,8 @@
 #include "config.h"
 #include <unistd.h>
 #include <errno.h>
+#include <error.h>
+#include "safe-read.h"
 
 int buggy_lseek_support(int fdesc)
 {

@@ -20,6 +20,9 @@
 
 /* GNU dd originally written by Paul Rubin, David MacKenzie, and Stuart Kemp. */
 
+#define _GNU_SOURCE 1
+#include <stdio.h>
+
 #include "dcfldd.h"
 #include "split.h"
 #include <stdlib.h>

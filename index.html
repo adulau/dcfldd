@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Dcfldd by adulau</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Dcfldd</h1>
+        <p>dcfldd - enhanced version of dd for forensics and security</p>
+
+        <p class="view"><a href="https://github.com/adulau/dcfldd">View the Project on GitHub <small>adulau/dcfldd</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/adulau/dcfldd/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/adulau/dcfldd/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/adulau/dcfldd">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>dcfldd</h1>
+
+<p>dcfldd is a modified version of GNU dd.  The major features added
+are hashing, fast disk wiping (through patterns) and status output.</p>
+
+<p>dcfldd was originally created by Nicholas Harbour from the
+DoD Computer Forensics Laboratory (DCFL).  Nick Harbour still maintains
+the package, although he is no longer affiliated with the DCFL.</p>
+
+<p>Send any feature requests or ideas to the author at
+<a href="mailto:nicholasharbour@yahoo.com">nicholasharbour@yahoo.com</a>.</p>
+
+<h2>dcfldd on GitHub</h2>
+
+<p>On <a href="https://github.com/adulau/dcfldd/">https://github.com/adulau/dcfldd/</a>, this is the latest version of
+<a href="http://dcfldd.sourceforge.net/">http://dcfldd.sourceforge.net/</a> (1.3.4-1) including Debian patches and
+some additional patches from Alexandre Dulaunoy <a href="https://github.com/adulau">https://github.com/adulau</a>.</p>
+
+<h2>dcfldd usage</h2>
+
+<pre><code>dcfldd if=/dev/sda hash=md5,sha256 hashwindow=20G md5log=md5.txt sha256log=sha256.txt \
+       hashconv=after bs=512 conv=noerror,sync split=20G splitformat=aa of=sda.dd
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/adulau">adulau</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

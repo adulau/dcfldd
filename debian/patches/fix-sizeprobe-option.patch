@@ -1,0 +1,16 @@
+Description: fix the sizeprobe=of option.
+Author: Vangelis Koukis <vkoukis@gmail.com>
+Last-Update: 2014-08-03
+Index: dcfldd-1.3.4.1/dcfldd.c
+===================================================================
+--- dcfldd-1.3.4.1.orig/dcfldd.c
++++ dcfldd-1.3.4.1/dcfldd.c
+@@ -759,7 +759,7 @@ int main(int argc, char **argv)
+         else
+             sizeprobe(STDIN_FILENO);
+     else if (probe == PROBE_OUTPUT)
+-        sizeprobe(STDOUT_FILENO);
++        sizeprobe(outputlist->data.fd);
+     start_time = time(NULL);
+     
+     if (do_verify)

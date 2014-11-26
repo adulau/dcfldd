@@ -759,7 +759,7 @@ int main(int argc, char **argv)
         else
             sizeprobe(STDIN_FILENO);
     else if (probe == PROBE_OUTPUT)
-        sizeprobe(STDOUT_FILENO);
+        sizeprobe(outputlist->data.fd);
     start_time = time(NULL);
     
     if (do_verify)

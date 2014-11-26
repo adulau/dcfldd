@@ -63,9 +63,13 @@ static off_t midpoint(off_t a, off_t b, long blksize)
 static off_t get_dev_size(int fd, long blksize) 
 {
     off_t num_sectors = 0;
-  
-    if (ioctl(fd, BLKGETSIZE, &num_sectors))
-        log_info("%s: ioctl call to BLKGETSIZE failed.\n", program_name);
+
+    /*
+     * Use BLKGETSIZE64 unconditionally, since dcfldd.h #defines _FILE_OFFSET_BITS 64
+     * and off_t is guaranteed to be large enough to hold the result.
+     */
+    if (ioctl(fd, BLKGETSIZE64, &num_sectors))
+        log_info("%s: ioctl call to BLKGETSIZE64 failed.\n", program_name);
     else 
         return (num_sectors * 512);
 }

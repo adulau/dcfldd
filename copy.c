@@ -223,7 +223,8 @@ int dd_copy(void)
     
             if (probe == PROBE_NONE || probed_size == 0)
                 fprintf(stderr, "\r%llu blocks (%lluMb) written.", 
-                        w_full, total_mb);
+			/* [FIX] copy.c:226:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {3,4} has type ‘uintmax_t’ [-Wformat=] */
+                        (long long unsigned int) w_full, (long long unsigned int) total_mb);
             else {
                 time_t curr_time = time(NULL);
                 int seconds = (int)difftime(curr_time, start_time);
@@ -237,7 +238,8 @@ int dd_copy(void)
     
                 time_left(secstr, sizeof secstr, seconds_remaining);
                 fprintf(stderr, "\r[%d%% of %lluMb] %llu blocks (%lluMb) written. %s",
-                        prcnt, probed_mb, w_full, total_mb, secstr);
+			/* [FIX] copy.c:240:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {4,5,6} has type ‘off_t’ [-Wformat=] */
+                        prcnt, (long long unsigned int) probed_mb, (long long unsigned int) w_full, (long long unsigned int) total_mb, secstr);
             }	
         }
     

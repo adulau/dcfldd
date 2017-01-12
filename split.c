@@ -102,7 +102,10 @@ static void open_split(split_t *split)
     char *ext, *fname;
     
     ext = getext(split->format, splitnum);
-    asprintf(&fname, "%s.%s", split->name, ext);
+    /* [FIX] split.c:105:5: warning: ignoring return value of ‘asprintf’, declared with attribute warn_unused_result [-Wunused-result] */
+    if( asprintf(&fname, "%s.%s", split->name, ext) == -1) {
+            return;
+    }
     free(ext);
 
     fd = open(fname, O_WRONLY | O_CREAT, perms);

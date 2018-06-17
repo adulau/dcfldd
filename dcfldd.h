@@ -86,7 +86,7 @@ while (0)
 #endif /* DEFAULT_HASHWINDOW_FORMAT */
 
 #ifndef DEFAULT_TOTALHASH_FORMAT
-#define DEFAULT_TOTALHASH_FORMAT "Total (#algorithm#): #hash#"
+#define DEFAULT_TOTALHASH_FORMAT "\nTotal (#algorithm#): #hash#"
 #endif /* DEFAULT_TOTALHASH_FORMAT */
 
 #ifndef DEFAULT_HASHCONV

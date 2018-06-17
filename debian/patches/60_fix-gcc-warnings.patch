@@ -1,0 +1,67 @@
+Description: fix some GCC warnings.
+Author: Joao Eriberto Mota Filho <eriberto@debian.org>
+Last-Update: 2015-02-10
+Index: dcfldd-1.3.4.1/copy.c
+===================================================================
+--- dcfldd-1.3.4.1.orig/copy.c
++++ dcfldd-1.3.4.1/copy.c
+@@ -223,7 +223,8 @@ int dd_copy(void)
+     
+             if (probe == PROBE_NONE || probed_size == 0)
+                 fprintf(stderr, "\r%llu blocks (%lluMb) written.", 
+-                        w_full, total_mb);
++			/* [FIX] copy.c:226:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {3,4} has type ‘uintmax_t’ [-Wformat=] */
++                        (long long unsigned int) w_full, (long long unsigned int) total_mb);
+             else {
+                 time_t curr_time = time(NULL);
+                 int seconds = (int)difftime(curr_time, start_time);
+@@ -237,7 +238,8 @@ int dd_copy(void)
+     
+                 time_left(secstr, sizeof secstr, seconds_remaining);
+                 fprintf(stderr, "\r[%d%% of %lluMb] %llu blocks (%lluMb) written. %s",
+-                        prcnt, probed_mb, w_full, total_mb, secstr);
++			/* [FIX] copy.c:240:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {4,5,6} has type ‘off_t’ [-Wformat=] */
++                        prcnt, (long long unsigned int) probed_mb, (long long unsigned int) w_full, (long long unsigned int) total_mb, secstr);
+             }	
+         }
+     
+Index: dcfldd-1.3.4.1/verify.c
+===================================================================
+--- dcfldd-1.3.4.1.orig/verify.c
++++ dcfldd-1.3.4.1/verify.c
+@@ -192,7 +192,8 @@ int dd_verify(void)
+     
+             if (probe == PROBE_NONE || probed_size == 0)
+                 fprintf(stderr, "\r%llu blocks (%lluMb) written.", 
+-                        w_full, total_mb);
++			/* [FIX] verify.c:195:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {3,4} has type ‘uintmax_t’ [-Wformat=] */
++                        (long long unsigned int) w_full, (long long unsigned int) total_mb);
+             else {
+                 time_t curr_time = time(NULL);
+                 int seconds = (int)difftime(curr_time, start_time);
+@@ -207,7 +208,8 @@ int dd_verify(void)
+                 time_left(secstr, sizeof secstr, seconds_remaining);
+                 fprintf(stderr,
+                         "\r[%d%% of %lluMb] %llu blocks (%lluMb) written. %s",
+-                        prcnt, probed_mb, w_full, total_mb, secstr);
++			/* [FIX] verify.c:210:25: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument {4,5,6} has type ‘off_t’ [-Wformat=] */
++                        prcnt, (long long unsigned int) probed_mb, (long long unsigned int) w_full, (long long unsigned int) total_mb, secstr);
+             }	
+         }
+ 
+Index: dcfldd-1.3.4.1/split.c
+===================================================================
+--- dcfldd-1.3.4.1.orig/split.c
++++ dcfldd-1.3.4.1/split.c
+@@ -102,7 +102,10 @@ static void open_split(split_t *split)
+     char *ext, *fname;
+     
+     ext = getext(split->format, splitnum);
+-    asprintf(&fname, "%s.%s", split->name, ext);
++    /* [FIX] split.c:105:5: warning: ignoring return value of ‘asprintf’, declared with attribute warn_unused_result [-Wunused-result] */
++    if( asprintf(&fname, "%s.%s", split->name, ext) == -1) {
++            return;
++    }
+     free(ext);
+ 
+     fd = open(fname, O_WRONLY | O_CREAT, perms);

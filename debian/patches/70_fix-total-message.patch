@@ -1,0 +1,17 @@
+Description: add a newline to generate a space between
+             the summary message and hashes.
+Author: Joao Eriberto Mota Filho <eriberto@debian.org>
+Last-Update: 2017-04-25
+Index: dcfldd-1.3.4.1/dcfldd.h
+===================================================================
+--- dcfldd-1.3.4.1.orig/dcfldd.h
++++ dcfldd-1.3.4.1/dcfldd.h
+@@ -86,7 +86,7 @@ while (0)
+ #endif /* DEFAULT_HASHWINDOW_FORMAT */
+ 
+ #ifndef DEFAULT_TOTALHASH_FORMAT
+-#define DEFAULT_TOTALHASH_FORMAT "Total (#algorithm#): #hash#"
++#define DEFAULT_TOTALHASH_FORMAT "\nTotal (#algorithm#): #hash#"
+ #endif /* DEFAULT_TOTALHASH_FORMAT */
+ 
+ #ifndef DEFAULT_HASHCONV
